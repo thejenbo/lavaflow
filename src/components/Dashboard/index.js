@@ -4,7 +4,13 @@ import {Link} from 'react-router-dom';
 import styled, { css } from 'react-emotion'
 import Button from '../Button';
 import NotesList from '../NotesList';
-import ViewNote from '../ViewNote';
+import NoteForm from '../NoteForm';
+
+const formContainer = css`
+    flex: 1;
+    padding: 30px;
+    border-left: 2px solid #ec008c;
+`;
 
 class Dashboard extends Component {
     state = {
@@ -32,10 +38,10 @@ class Dashboard extends Component {
                     </React.Fragment>
                 }
                 {this.props.notes.length > 0 && 
-                    <React.Fragment>
+                    <div className={formContainer}>
                         <NotesList/>
-                        <ViewNote note={this.state.selectedNote}/>
-                    </React.Fragment>
+                        <NoteForm note={this.state.selectedNote}/>
+                    </div>
                 }
             </React.Fragment>
         )

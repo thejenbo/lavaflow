@@ -6,12 +6,6 @@ import AppRouter, { history } from '../../routers/AppRouter';
 import {startEditNote, startDeleteNote} from '../../actions/notes';
 import Button from '../Button';
 
-const noteForm = css`
-    flex: 1;
-    padding: 30px;
-    border-left: 2px solid #ec008c;
-`;
-
 class ViewNote extends Component {
 
     state = {

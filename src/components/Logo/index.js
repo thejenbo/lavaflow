@@ -7,18 +7,12 @@ const LogoContainer = styled('a')`
   text-decoration: none;
 `
 
-class Logo extends Component {
-    constructor(props) {
-        super(props)
-    }
-
-    render () {
-        return (
-            <LogoContainer href="/" style={this.props.style}>
-                lavaflow
-            </LogoContainer>
-        )
-    }
+const Logo = props => {
+    return (
+        <LogoContainer href="/" style={props.style}>
+            lavaflow
+        </LogoContainer>
+    )
 }
 
 export default Logo;
