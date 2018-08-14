@@ -12,13 +12,14 @@ import { startGetNotes } from './actions/notes';
 injectGlobal`
 	* {
 		box-sizing: border-box;
-	}
-	@import url('https://fonts.googleapis.com/css?family=Varela+Round');
+    }
+    
+	@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600');
 
 	body {
-		background-color: #98bbd8;
-		color: #fff;
-		font-family: 'Varela Round';
+		color: #ec008c;
+        font-family: 'Montserrat';
+        margin: 0;
 	}
 
 	.App {
@@ -27,7 +28,9 @@ injectGlobal`
 		position: fixed;
 		width: 100%;
 		display: flex;
-		flex-direction: column;
+        flex-direction: column;
+        background: #ec008c;
+        background: linear-gradient(to bottom, #fc6767, #ec008c);
 	}
 
 	.AppContainer {
@@ -66,7 +69,7 @@ firebase.auth().onAuthStateChanged((user) => {
         store.dispatch(startGetNotes()).then(() => {
             renderApp();
             if (history.location.pathname === '/') {
-                history.push('/dashboard');
+                history.push('/');
             }
         });
     } else {

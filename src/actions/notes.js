@@ -1,9 +1,7 @@
-
-import uid from 'uuid';
 import { database } from '../firebase/firebase';
 
 export const createNote = note => ({
-    type: 'CREATE_CASE',
+    type: 'CREATE_NOTE',
     note
 });
 
@@ -12,13 +10,14 @@ export const startCreateNote = (noteData = {}) => {
         const uid = getState().auth.uid;
         const {
             text = '', 
-            category = ''
+            createdAt = ''
         } = noteData;
 
-        const note = {text, category};
+        const note = {text, createdAt};
 
         database.ref(`users/${uid}/notes`).push(note)
         .then((ref) => {
+            console.log('action dispatching: createNote');
             dispatch(createNote({
                 id: ref.key,
                 ...note
@@ -27,17 +26,33 @@ export const startCreateNote = (noteData = {}) => {
     }
 };
 
-export const removeNote = id => ({
-    type: 'REMOVE_NOTE',
+export const editNote = (id, updates) => ({
+    type: 'EDIT_NOTE',
+    id,
+    updates
+});
+
+export const startEditNote = (id, updates) => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
+        return database.ref(`users/${uid}/notes/${id}`).update(updates)
+            .then(() => {
+                dispatch(editNote(id, updates));
+            });
+    };
+}
+
+export const deleteNote = ({id} = {}) => ({
+    type: 'DELETE_NOTE',
     id
 });
 
-export const startRemoveNote = ({id} = {}) => {
+export const startDeleteNote = ({id} = {}) => {
     return (dispatch, getState) => {
         const uid = getState().auth.uid;
         return database.ref(`users/${uid}/notes/${id}`).remove()
             .then(() => {
-                dispatch(removeNote({id}));
+                dispatch(deleteNote({id}));
             });
     };
 };

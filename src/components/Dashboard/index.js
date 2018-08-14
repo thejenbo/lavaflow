@@ -2,35 +2,48 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import styled, { css } from 'react-emotion'
-
-const DashboardContainer = styled('div')`
-  color: #fff;
-  font-size: 32px;
-  text-decoration: none;
-`
+import Button from '../Button';
+import NotesList from '../NotesList';
+import ViewNote from '../ViewNote';
 
 class Dashboard extends Component {
+    state = {
+        selectedNote: this.props.notes[0]
+    }
 
-    render () {
+    componentDidMount() {
+        this.setState({
+            selectedNote: this.props.match.params.id ? this.props.notes.find((note) => note.id === this.props.match.params.id) : this.props.notes[0]
+        });
+    }
+
+    render() {
+        console.log('component rendered, selected note is: ', this.state.selectedNote);
         return (
-            <div>
-            {this.props.cases &&
-                this.props.cases.map((theCase) =>
-                    <Link to={`/case/${theCase.id}`} key={theCase.id} style={{display:'block'}}>
-                        <a>{theCase.name}</a>
-                    </Link>
-                )
-            }
-            {!this.props.cases && 
-                <p>No cases to display.</p>
-            }
-            </div>
+            <React.Fragment>
+                {!this.props.notes.length && 
+                    <React.Fragment>
+                        <p>You haven't created any notes yet!</p>
+                        <Link to="/create">
+                            <Button>
+                                Create A Note
+                            </Button>
+                        </Link>
+                    </React.Fragment>
+                }
+                {this.props.notes.length > 0 && 
+                    <React.Fragment>
+                        <NotesList/>
+                        <ViewNote note={this.state.selectedNote}/>
+                    </React.Fragment>
+                }
+            </React.Fragment>
         )
     }
 }
 
-const mapStateToProps = state => {
-    return state;
-}
+const mapStateToProps = (state) => {
+    return state
+};
 
 export default connect(mapStateToProps)(Dashboard);

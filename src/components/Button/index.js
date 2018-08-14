@@ -16,7 +16,7 @@ const Button = styled('button')`
 `
 
 export default props => (
-    <Button>
+    <Button {...props}>
         { !props.link && props.children}
         { props.link && <Link to={props.link}><a>{props.children}</a></Link> }
     </Button>

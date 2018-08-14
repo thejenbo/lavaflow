@@ -8,19 +8,19 @@ export default (state = notesReducerDefaultState, action) => {
                 ...state,
                 action.note
             ];
-        case 'REMOVE_NOTE':
+        case 'DELETE_NOTE':
             return state.filter(({id}) => id !== action.id);
-        // case 'EDIT_CASE':
-        //     return state.map((expense) => {
-        //         if (expense.id === action.id) {
-        //             return {
-        //                 ...expense,
-        //                 ...action.updates
-        //             }
-        //         } else {
-        //             return expense;
-        //         }
-        //     })
+        case 'EDIT_NOTE':
+            return state.map((note) => {
+                if (note.id === action.id) {
+                    return {
+                        ...note,
+                        ...action.updates
+                    }
+                } else {
+                    return note;
+                }
+            })
         case 'GET_NOTES':
             return action.notes;
         default:
