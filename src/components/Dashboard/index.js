@@ -20,7 +20,7 @@ const Drawer = styled('div')`
 
 class Dashboard extends Component {
     state = {
-        noteFormIsOpen: false
+        noteFormIsOpen: false // Need to get this value from redux store to persist after route switching
     }
 
     selectedNote = this.props.match.params.id ? this.props.notes.find((note) => note.id === this.props.match.params.id) : this.props.notes[0];
