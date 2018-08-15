@@ -9,17 +9,9 @@ import Button from '../Button';
 class ViewNote extends Component {
 
     state = {
-        text: this.props.note.text,
+        text: '',
         createdAt: '',
         error: ''
-    }
-
-    componentDidUpdate() {
-        if (this.state.text !== this.props.note.text) {
-            this.setState({
-                text: this.props.note.text
-            });
-        }
     }
 
     handleTextareaChange(e) {

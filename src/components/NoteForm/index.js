@@ -19,7 +19,7 @@ const textArea = css`
 
 class NoteForm extends Component {
     state = {
-        text: this.props.note ? this.props.note.text : '',
+        text: '',
         createdAt: ''
     }
 
@@ -55,7 +55,7 @@ class NoteForm extends Component {
             >
                 <textarea 
                     className={textArea}
-                    defaultValue={this.state.text}
+                    defaultValue={this.props.note.text || ''}
                     placeholder="Look, it's a brand new note!"
                     onChange={(e) => this.handleChange(e)}
                 />
