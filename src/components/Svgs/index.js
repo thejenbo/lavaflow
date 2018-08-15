@@ -25,6 +25,36 @@ export const CloseMenu = props => (
   </svg>
 )
 
+export const PlusSign = props => (
+	<svg viewBox="0 0 50 50" {...props}>
+		<path
+			className="st0"
+			fill="#FFFFFF"
+			d="M25 50c-1.9 0-3.5-1.8-3.5-4V4c0-2.2 1.6-4 3.5-4s3.5 1.8 3.5 4v42c0 2.2-1.6 4-3.5 4z"
+		/>
+		<path
+			className="st0"
+			fill="#FFFFFF"
+			d="M50 25c0 1.9-1.8 3.5-4 3.5H4c-2.2 0-4-1.6-4-3.5s1.8-3.5 4-3.5h42c2.2 0 4 1.6 4 3.5z"
+		/>
+	</svg>
+)
+
+export const RightArrow = props => (
+	<svg viewBox="0 0 22.2 37.4" {...props}>
+		<defs>
+			<linearGradient id="linear" x1="0%" y1="0%" x2="100%" y2="0%">
+				<stop offset="0%"   stopColor="#fc6767" stopOpacity="1.0" />
+				<stop offset="100%" stopColor="#ec008c" stopOpacity="1.0" />
+			</linearGradient>
+		</defs>
+		<path
+			fill="url(#linear)"
+			d="M18.7 13.8L6 1C4.6-.3 2.4-.3 1 1-.4 2.4-.4 4.6 1 6l12.7 12.7L1 31.4c-1.4 1.4-1.4 3.6 0 5s3.6 1.4 4.9 0l12.7-12.7 2.5-2.5c1.4-1.4 1.4-3.6 0-5l-2.4-2.4z"
+		/>
+	</svg>
+)
+
 export const Logo = props => (
 	<svg viewBox="0 0 448.5 88.7" {...props}>
 		<path

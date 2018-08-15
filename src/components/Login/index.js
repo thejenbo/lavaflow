@@ -1,17 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import styled, { css } from 'react-emotion'
+import { css } from 'react-emotion'
 import { startLogin } from '../../actions/auth';
-import Layout from '../Layout';
-import Logo from '../Logo';
+import {Logo} from '../Svgs';
 import Button from '../Button';
 
+const loginContainer = css`
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+`;
 
 class Login extends Component {
     render() {
-        console.log(this.props);
         return (
-            <div>
+            <div className={loginContainer}>
+                <div style={{width: '216px', height: '42px', display: 'block', marginBottom: '20px'}}>
+                    <Logo/>
+                </div>
+
                 <Button
                     onClick={() => this.props.onClick()}
                 >

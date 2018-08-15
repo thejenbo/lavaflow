@@ -1,51 +1,43 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import AppRouter, { history } from '../../routers/AppRouter';
-import {startDeleteNote, startEditNote} from '../../actions/notes';
-import styled from 'react-emotion';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { history } from '../../routers/AppRouter';
+import moment from 'moment';
+import { startDeleteNote, startCreateNote, startEditNote } from '../../actions/notes';
+import { css } from 'react-emotion';
 import Button from '../Button';
 
-const WAIT_INTERVAL = 1000;
-const ENTER_KEY = 13;
+const WAIT_INTERVAL = 1500;
+
+const textArea = css`
+    width: 100%;
+    height: 300px;
+    border-radius: 3px;
+    padding: 15px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+    border: none;
+`
 
 class NoteForm extends Component {
     state = {
         text: this.props.note.text || '',
-        createdAt: '',
-        error: ''
+        createdAt: ''
     }
 
     componentWillMount() {
         this.timer = null;
+        this.id = this.props.note.id || null;
     }
 
-    componentDidUpdate() {
-        if (this.state.text !== this.props.note.text) {
-            this.setState({
-                text: this.props.note.text
-            });
-        }
+    handleChange(e) {
+        this.setState({ 
+            text: e.target.value 
+        });
+
+        this.timer = setTimeout(this.triggerSave.bind(this), WAIT_INTERVAL);
     }
 
-    handleChange(text) {
-        clearTimeout(this.timer);
-
-        this.setState({ text });
-
-        this.timer = setTimeout(this.triggerChange, WAIT_INTERVAL);
-    }
-
-    handleKeyDown(e) {
-        clearTimeout(this.timer);
-        if (e.keyCode === ENTER_KEY) {
-            this.triggerChange();
-        }
-    }
-
-    triggerChange() {
-        const { text } = this.state;
-
-        this.props.onChange(text);
+    triggerSave() {
+        this.props.onSave(this.state.text, this.id);
     }
 
     handleTextareaChange(e) {
@@ -54,38 +46,22 @@ class NoteForm extends Component {
         });
     }
 
-    // handleSaveClick(e) {
-    //     e.preventDefault();
-    //     if (!this.state.text) {
-    //         return this.setState({
-    //             error: 'Your note is empty!'
-    //         });
-    //     } else if (this.props.note.text === this.state.text) {
-    //         return;
-    //     } else {
-    //         return this.setState({
-    //             error: '',
-    //             createdAt: Moment().format()
-    //         }, () => this.props.onSave(this.props.note.id, this.state.text, this.state.createdAt));
-    //     }
-    // }
-
     render() {
         const id = this.props.note.id || null;
+
         return (
             <form 
-                className=""
-                onSubmit={(e) => e.preventDefault()} 
+                onSubmit={(e) => e.preventDefault()}
                 key={id}
             >
                 <textarea 
+                    className={textArea}
                     defaultValue={this.state.text}
                     placeholder="Look, it's a brand new note!"
-                    onChange={this.handleChange}
-                    onKeyDown={this.handleKeyDown}
+                    onChange={(e) => this.handleChange(e)}
                 />
                 {id && 
-                    (<Button onClick={() => this.props.onDeleteClick(id)}>
+                    (<Button onClick={() => this.props.onDeleteClick(this.id)}>
                         Delete
                     </Button>)
                 }
@@ -95,13 +71,20 @@ class NoteForm extends Component {
     }
 }
 
+const mapStateToProps = state => {
+    return state;
+}   
+
 const mapDispatchToProps = dispatch => {
     return {
-        onSave: (id, text, createdAt) => {
-            const note = {
-                text, createdAt
-            };
-            dispatch(startEditNote(id, note));
+        onSave: (text, id) => {
+            const createdAt = moment().format();
+            const note = {text, createdAt};
+            if (id) {
+                dispatch(startEditNote(id, note));
+            } else {
+                dispatch(startCreateNote(note));
+            }
         },
         onDeleteClick: id => {
             dispatch(startDeleteNote({id}));
@@ -110,4 +93,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(undefined, mapDispatchToProps)(NoteForm);
+export default connect(mapStateToProps, mapDispatchToProps)(NoteForm);
