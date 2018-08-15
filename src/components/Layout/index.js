@@ -9,6 +9,8 @@ const layoutContainer = css`
 
 const componentContainer = css`
     display: flex;
+    justify-content: center;
+    align-items: center;
 `;
 
 export default (props) => {

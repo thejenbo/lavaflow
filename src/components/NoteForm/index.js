@@ -19,13 +19,13 @@ const textArea = css`
 
 class NoteForm extends Component {
     state = {
-        text: this.props.note.text || '',
+        text: this.props.note ? this.props.note.text : '',
         createdAt: ''
     }
 
     componentWillMount() {
         this.timer = null;
-        this.id = this.props.note.id || null;
+        this.id = this.props.note ? this.props.note.id : null;
     }
 
     handleChange(e) {
@@ -47,12 +47,11 @@ class NoteForm extends Component {
     }
 
     render() {
-        const id = this.props.note.id || null;
 
         return (
             <form 
                 onSubmit={(e) => e.preventDefault()}
-                key={id}
+                key={this.id}
             >
                 <textarea 
                     className={textArea}
@@ -60,7 +59,7 @@ class NoteForm extends Component {
                     placeholder="Look, it's a brand new note!"
                     onChange={(e) => this.handleChange(e)}
                 />
-                {id && 
+                {this.id && 
                     (<Button onClick={() => this.props.onDeleteClick(this.id)}>
                         Delete
                     </Button>)

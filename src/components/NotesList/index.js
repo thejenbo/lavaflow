@@ -24,10 +24,14 @@ const notesListItem = css`
 
 const noteContent = css``;
 
-const NotesList = props => (
+const NotesList = ({notes, clickHandler}) => (
     <div className={notesList}>
-        {props.notes.map((note) => (
-            <Link to={`/note/${note.id}`} className={notesListItem} key={note.id}>
+        {notes.map((note) => (
+            <Link 
+                to={`/note/${note.id}`} 
+                className={notesListItem} key={note.id}
+                onClick={() => clickHandler()}
+            >
                 <div className={noteContent}>
                     <h3>
                         {note.createdAt}
@@ -36,10 +40,7 @@ const NotesList = props => (
                         {note.text}
                     </p>
                 </div>
-                <div 
-                    style={{width: '22px', height: '37px'}}
-                    onClick={() => this.toggleMenu()}
-                >
+                <div style={{width: '22px', height: '37px'}}>
                     <RightArrow/>
                 </div>
             </Link>

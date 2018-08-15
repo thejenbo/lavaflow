@@ -10,7 +10,7 @@ const Drawer = styled('div')`
     position: fixed;
     height: 100%;
     top: 0;
-    left: -300px;
+    left: -100%;
     transition: 500ms left;
 
     &.open {
@@ -23,6 +23,8 @@ class Dashboard extends Component {
         noteFormIsOpen: false
     }
 
+    selectedNote = this.props.match.params.id ? this.props.notes.find((note) => note.id === this.props.match.params.id) : this.props.notes[0];
+
     toggleNoteForm = this.toggleNoteForm.bind(this);
 
     toggleNoteForm() {
@@ -33,20 +35,11 @@ class Dashboard extends Component {
         return (
             <React.Fragment>
                 {!this.props.notes.length && 
-                    <React.Fragment>
-                        <p>You haven't created any notes yet!</p>
-                        <Link to="/create">
-                            <Button
-                                onClick={() => this.toggleNoteForm()}
-                            >
-                                Create A Note
-                            </Button>
-                        </Link>
-                    </React.Fragment>
+                    <h3 style={{color: '#fff'}}>You haven't created any notes yet!</h3>
                 }
-                {this.props.notes.length > 0 && <NotesList/>}
-                <Drawer>
-                    <NoteForm/>
+                {this.props.notes.length > 0 && <NotesList clickHandler={this.toggleNoteForm}/>}
+                <Drawer className={this.state.noteFormIsOpen && 'open'}>
+                    <NoteForm note={this.selectedNote}/>
                 </Drawer>
             </React.Fragment>
         )

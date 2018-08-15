@@ -53,7 +53,6 @@ class Header extends Component {
 
                 <div 
                     style={{width: '36px', height: '36px', cursor: 'pointer'}}
-                    onClick={() => this.toggleMenu()}
                 >
                     <PlusSign/>
                 </div>
