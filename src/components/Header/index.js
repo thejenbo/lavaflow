@@ -8,18 +8,19 @@ const StyledHeader = styled('header')`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 30px 0;
+    padding: 0;
+    margin: 15px;
 `
 
 const Drawer = styled('div')`
     position: fixed;
     height: 100%;
     top: 0;
-    left: -300px;
-    transition: 500ms left;
+    right: -300px;
+    transition: 500ms right;
 
     &.open {
-        left: 0;
+        right: 0;
     }
 `
 
@@ -37,13 +38,6 @@ class Header extends Component {
     render() {
         return (
             <StyledHeader>
-                <div 
-                    style={{width: '36px', height: '32px', cursor: 'pointer'}}
-                    onClick={() => this.toggleMenu()}
-                >
-                    <OpenMenu/>
-                </div>
-
                 <Link
                     to="/"
                     style={{width: '216px', height: '42px', display: 'block'}}
@@ -52,9 +46,10 @@ class Header extends Component {
                 </Link>
 
                 <div 
-                    style={{width: '36px', height: '36px', cursor: 'pointer'}}
+                    style={{width: '36px', height: '32px', cursor: 'pointer'}}
+                    onClick={() => this.toggleMenu()}
                 >
-                    <PlusSign/>
+                    <OpenMenu/>
                 </div>
 
                 <Drawer className={this.state.navIsOpen && 'open'}>

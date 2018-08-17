@@ -1,5 +1,9 @@
 import { database } from '../firebase/firebase';
 
+export const toggleForm = () => ({
+    type: 'TOGGLE_FORM',
+});
+
 export const createNote = note => ({
     type: 'CREATE_NOTE',
     note
@@ -17,7 +21,6 @@ export const startCreateNote = (noteData = {}) => {
 
         database.ref(`users/${uid}/notes`).push(note)
         .then((ref) => {
-            console.log('action dispatching: createNote');
             dispatch(createNote({
                 id: ref.key,
                 ...note

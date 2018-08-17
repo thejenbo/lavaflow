@@ -25,7 +25,8 @@ class NoteForm extends Component {
 
     componentWillMount() {
         this.timer = null;
-        this.id = this.props.note ? this.props.note.id : null;
+        this.id = this.props.noteId ? this.props.noteId : null;
+        this.selectedNote = this.id ? this.props.notes.find((note) => note.id === this.id) : null;
     }
 
     handleChange(e) {
@@ -55,7 +56,7 @@ class NoteForm extends Component {
             >
                 <textarea 
                     className={textArea}
-                    defaultValue={this.props.note.text || ''}
+                    defaultValue={this.selectedNote ? this.selectedNote.text : ''}
                     placeholder="Look, it's a brand new note!"
                     onChange={(e) => this.handleChange(e)}
                 />
@@ -83,6 +84,7 @@ const mapDispatchToProps = dispatch => {
                 dispatch(startEditNote(id, note));
             } else {
                 dispatch(startCreateNote(note));
+                history.push('/');
             }
         },
         onDeleteClick: id => {

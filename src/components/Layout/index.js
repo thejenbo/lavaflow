@@ -4,22 +4,21 @@ import Header from '../Header';
 
 const layoutContainer = css`
     height: 100%;
-    margin: 0 30px;
 `;
 
 const componentContainer = css`
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    max-height: 100%;
 `;
 
 export default (props) => {
     return (
-        <div className={layoutContainer}>
+        <React.Fragment>
             <Header/>
             <div className={componentContainer}>
                 {props.children && props.children}
             </div>
-        </div>
+        </React.Fragment>
     )
 }

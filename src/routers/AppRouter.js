@@ -1,9 +1,9 @@
 import React from 'react';
-import {Router, Route, Switch} from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 import Login from '../components/Login';
 import Dashboard from '../components/Dashboard';
-import CreateNote from '../components/CreateNote';
+import Editor from '../components/Editor';
 import NotFound from '../components/NotFound';
 import PrivateRouter from './PrivateRouter';
 import PublicRouter from './PublicRouter';
@@ -22,10 +22,6 @@ const AppRouter = () => (
                 <PrivateRouter 
                     path="/dashboard/"
                     component={Dashboard}
-                />
-                <PrivateRouter 
-                    path="/create/"
-                    component={CreateNote}
                 />
                 <PrivateRouter 
                     path="/note/:id"

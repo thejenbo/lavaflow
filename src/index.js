@@ -32,12 +32,6 @@ injectGlobal`
         background: #ec008c;
         background: linear-gradient(to bottom, #fc6767, #ec008c);
 	}
-
-	.AppContainer {
-		position: relative;
-		height: 100%;
-	}
-
 `;
 
 const store = configureStore();
@@ -45,9 +39,7 @@ const store = configureStore();
 const jsx = (
 	<Provider store={store}>
 		<div className="App">
-			<div className="AppContainer">
-				<AppRouter/>
-			</div>
+			<AppRouter/>
 		</div>
 	</Provider>
 );
