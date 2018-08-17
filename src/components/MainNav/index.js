@@ -6,12 +6,12 @@ import { startLogOut } from '../../actions/auth';
 import {CloseMenu} from '../Svgs';
 
 const Nav = styled('nav')`
-    width: 300px;
+    width: 250px;
     height: 100%;
     display: flex;
     flex-direction: column;
     background: #fff;
-    padding: 30px;
+    padding: 15px;
     position: relative;
 
     a {
@@ -34,8 +34,8 @@ const Nav = styled('nav')`
 `;
 
 const menuToggle = css`
-    top: 30px;
-    right: 30px;
+    top: 15px;
+    right: 15px;
     position: absolute;
     z-index: 500;
 `;

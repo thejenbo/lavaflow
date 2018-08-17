@@ -1,6 +1,6 @@
 const COLOR_PRIMARY = '#ec008c';
 const COLOR_SECONDARY = '#fc6767';
-const COLOR_GREY = '#ec008c';
+const COLOR_GREY = '#2f4858';
 
 const GRADIENT = `linear-gradient(to bottom, ${COLOR_SECONDARY}, ${COLOR_PRIMARY})`;
 

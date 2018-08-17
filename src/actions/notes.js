@@ -1,9 +1,5 @@
 import { database } from '../firebase/firebase';
 
-export const toggleForm = () => ({
-    type: 'TOGGLE_FORM',
-});
-
 export const createNote = note => ({
     type: 'CREATE_NOTE',
     note

@@ -16,7 +16,7 @@ const mapDispatchToProps = dispatch => {
     return {
         onClick: () => {
             const createdAt = moment().format();
-            dispatch(startCreateNote('', createdAt));
+            dispatch(startCreateNote({text: '', createdAt}));
         }
     }
 }

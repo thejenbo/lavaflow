@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { history } from '../../routers/AppRouter';
 import moment from 'moment';
-import { startDeleteNote, startCreateNote, startEditNote } from '../../actions/notes';
+import { startDeleteNote, startEditNote } from '../../actions/notes';
 import { css } from 'react-emotion';
 import Button from '../Button';
 
@@ -82,9 +82,6 @@ const mapDispatchToProps = dispatch => {
             const note = {text, createdAt};
             if (id) {
                 dispatch(startEditNote(id, note));
-            } else {
-                dispatch(startCreateNote(note));
-                history.push('/');
             }
         },
         onDeleteClick: id => {

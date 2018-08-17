@@ -2,14 +2,12 @@ import React, {Component} from 'react';
 import {css} from 'react-emotion';
 import Header from '../Header';
 
-const layoutContainer = css`
-    height: 100%;
-`;
-
 const componentContainer = css`
     display: flex;
+    flex: 1;
     flex-direction: column;
     max-height: 100%;
+    padding: 15px;
 `;
 
 export default (props) => {

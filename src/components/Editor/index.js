@@ -4,8 +4,8 @@ import { css } from 'react-emotion';
 import NoteForm from '../NoteForm';
 
 const editorContainer = css`
-    background: #fff;
     height: 100%;
+    flex: 1;
 `;
 
 class Editor extends Component {

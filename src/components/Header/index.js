@@ -16,7 +16,7 @@ const Drawer = styled('div')`
     position: fixed;
     height: 100%;
     top: 0;
-    right: -300px;
+    right: -250px;
     transition: 500ms right;
 
     &.open {
