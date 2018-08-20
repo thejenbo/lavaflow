@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import {Link} from 'react-router-dom';
 import styled, { css } from 'react-emotion'
 import {Logo, OpenMenu, PlusSign} from '../Svgs';
@@ -18,13 +18,14 @@ const Drawer = styled('div')`
     top: 0;
     right: -250px;
     transition: 500ms right;
+    z-index: 1;
 
     &.open {
         right: 0;
     }
 `
 
-class Header extends Component {
+class Header extends PureComponent {
     state = {
         navIsOpen: false
     }

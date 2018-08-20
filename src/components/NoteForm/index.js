@@ -1,39 +1,53 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { history } from '../../routers/AppRouter';
 import moment from 'moment';
 import { startDeleteNote, startEditNote } from '../../actions/notes';
 import { css } from 'react-emotion';
 import Button from '../Button';
+import { Delete } from '../Svgs';
 
 const WAIT_INTERVAL = 1500;
 
+const noteForm = css`
+    height: 100%;
+    position: relative;
+`
+
 const textArea = css`
     width: 100%;
-    height: 300px;
+    flex: 1;
     border-radius: 3px;
     padding: 15px;
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
     border: none;
 `
 
-class NoteForm extends Component {
+const deleteBtn = css`
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    padding: 0;
+    background: transparent;
+`;
+
+class NoteForm extends PureComponent {
     state = {
         text: '',
         createdAt: ''
     }
 
-    componentWillMount() {
-        this.timer = null;
-        this.id = this.props.noteId ? this.props.noteId : null;
-        this.selectedNote = this.id ? this.props.notes.find((note) => note.id === this.id) : null;
-    }
+    timer = null;
+    id = this.props.noteId ? this.props.noteId : null;
+    selectedNote = this.id ? this.props.notes.find((note) => note.id === this.id) : null;
 
     handleChange(e) {
         this.setState({ 
             text: e.target.value 
         });
-
+        
+        clearTimeout(this.timer);
         this.timer = setTimeout(this.triggerSave.bind(this), WAIT_INTERVAL);
     }
 
@@ -47,12 +61,17 @@ class NoteForm extends Component {
         });
     }
 
+    componentWillUnmount() {
+        clearTimeout(this.timer);
+    }
+
     render() {
 
         return (
             <form 
                 onSubmit={(e) => e.preventDefault()}
                 key={this.id}
+                className={noteForm}
             >
                 <textarea 
                     className={textArea}
@@ -61,8 +80,11 @@ class NoteForm extends Component {
                     onChange={(e) => this.handleChange(e)}
                 />
                 {this.id && 
-                    (<Button onClick={() => this.props.onDeleteClick(this.id)}>
-                        Delete
+                    (<Button 
+                        onClick={() => this.props.onDeleteClick(this.id)}
+                        className={deleteBtn}
+                    >
+                        <Delete />
                     </Button>)
                 }
                 {this.state.error && <p>{this.state.error}</p>}

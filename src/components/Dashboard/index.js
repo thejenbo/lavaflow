@@ -1,17 +1,20 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { css } from 'react-emotion';
 import Toolbar from '../Toolbar';
 import Sidebar from '../Sidebar';
 import Editor from '../Editor';
+import { COLOR_PRIMARY } from '../../lib/styles';
 
 const notesContainer = css`
+    border: 1px solid ${COLOR_PRIMARY};
     background: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     display: flex;
     flex: 1;
 `;
 
-class Dashboard extends Component {
+class Dashboard extends PureComponent {
 
     render() {
         return (

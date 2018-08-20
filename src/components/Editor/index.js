@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { css } from 'react-emotion';
 import NoteForm from '../NoteForm';
@@ -8,7 +8,7 @@ const editorContainer = css`
     flex: 1;
 `;
 
-class Editor extends Component {
+class Editor extends PureComponent {
 
     render() {
         return (

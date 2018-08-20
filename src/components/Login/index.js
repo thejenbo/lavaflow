@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { css } from 'react-emotion'
 import { startLogin } from '../../actions/auth';
@@ -13,7 +13,7 @@ const loginContainer = css`
     align-items: center;
 `;
 
-class Login extends Component {
+class Login extends PureComponent {
     render() {
         return (
             <div className={loginContainer}>
