@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import styled, { css } from 'react-emotion'
+import React from 'react';
+import styled from 'react-emotion'
 
 const LogoContainer = styled('a')`
   color: #fff;

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import styled, { css } from 'react-emotion'
+import styled from 'react-emotion'
 import { COLOR_PRIMARY, GRADIENT_PRIMARY } from '../../lib/styles'
 
 const Button = styled('button')`

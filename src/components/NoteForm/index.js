@@ -5,6 +5,7 @@ import moment from 'moment';
 import { startDeleteNote, startEditNote } from '../../actions/notes';
 import { css } from 'react-emotion';
 import Button from '../Button';
+import AddNote from '../AddNote';
 import { Delete } from '../Svgs';
 
 const WAIT_INTERVAL = 1500;
@@ -26,11 +27,15 @@ const textArea = css`
 const deleteBtn = css`
     width: 18px;
     height: 22px;
+    padding: 0;
+    background: transparent;
+`;
+
+const btnContainer = css`
+    display: flex;
     position: absolute;
     bottom: 15px;
     right: 15px;
-    padding: 0;
-    background: transparent;
 `;
 
 class NoteForm extends PureComponent {
@@ -43,7 +48,7 @@ class NoteForm extends PureComponent {
     id = this.props.noteId ? this.props.noteId : null;
     selectedNote = this.id ? this.props.notes.find((note) => note.id === this.id) : null;
 
-    handleChange(e) {
+    handleChange = e => {
         this.setState({ 
             text: e.target.value 
         });
@@ -52,17 +57,17 @@ class NoteForm extends PureComponent {
         this.timer = setTimeout(this.triggerSave.bind(this), WAIT_INTERVAL);
     }
 
-    triggerSave() {
+    triggerSave = () => {
         this.props.onSave(this.state.text, this.id);
     }
 
-    handleTextareaChange(e) {
+    handleTextareaChange = e => {
         this.setState({
             text: e.target.value
         });
     }
 
-    componentWillUnmount() {
+    componentWillUnmount = () => {
         clearTimeout(this.timer);
     }
 
@@ -78,16 +83,16 @@ class NoteForm extends PureComponent {
                     className={textArea}
                     defaultValue={this.selectedNote ? this.selectedNote.text : ''}
                     placeholder="Look, it's a brand new note!"
-                    onChange={(e) => this.handleChange(e)}
+                    onChange={this.handleChange}
                 />
-                {this.id && 
-                    (<Button 
+                <div className={btnContainer}>
+                    <Button 
                         onClick={() => this.props.onDeleteClick(this.id)}
                         className={deleteBtn}
                     >
                         <Delete />
-                    </Button>)
-                }
+                    </Button>
+                </div>
                 {this.state.error && <p>{this.state.error}</p>}
             </form>
         )
@@ -108,6 +113,7 @@ const mapDispatchToProps = dispatch => {
             }
         },
         onDeleteClick: id => {
+            console.log('ondeleteclick ', id);
             dispatch(startDeleteNote({id}));
             history.push('/');
         }

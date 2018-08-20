@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {css} from 'react-emotion';
 import Header from '../Header';
 
@@ -7,7 +7,7 @@ const componentContainer = css`
     flex: 1;
     flex-direction: column;
     max-height: 100%;
-    padding: 15px;
+    padding: 0 15px;
 `;
 
 export default (props) => {

@@ -1,5 +1,4 @@
 import React from 'react';
-import { history } from '../../routers/AppRouter';
 import { Link } from 'react-router-dom';
 import { css } from 'react-emotion';
 import moment from 'moment';

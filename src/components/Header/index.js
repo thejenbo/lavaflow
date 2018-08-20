@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import {Link} from 'react-router-dom';
-import styled, { css } from 'react-emotion'
+import styled from 'react-emotion'
 import {Logo, OpenMenu} from '../Svgs';
 import MainNav from '../MainNav';
 
@@ -30,9 +30,7 @@ class Header extends PureComponent {
         navIsOpen: false
     }
 
-    toggleMenu = this.toggleMenu.bind(this);
-
-    toggleMenu() {
+    toggleMenu = () => {
         this.setState({navIsOpen: !this.state.navIsOpen})
     }
 
@@ -48,7 +46,7 @@ class Header extends PureComponent {
 
                 <div 
                     style={{width: '36px', height: '32px', cursor: 'pointer'}}
-                    onClick={() => this.toggleMenu()}
+                    onClick={this.toggleMenu}
                 >
                     <OpenMenu/>
                 </div>

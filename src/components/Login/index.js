@@ -22,7 +22,7 @@ class Login extends PureComponent {
                 </div>
 
                 <Button
-                    onClick={() => this.props.onClick()}
+                    onClick={this.props.onClick}
                 >
                     login with google
                 </Button>

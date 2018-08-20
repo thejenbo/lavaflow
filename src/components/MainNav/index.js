@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled, { css } from 'react-emotion';
@@ -45,7 +45,7 @@ const MainNav = ({ onClick, clickHandler }) => (
         <div 
             className={menuToggle}
             style={{width: '50px', height: '42px', cursor: 'pointer'}}
-            onClick={() => clickHandler()}
+            onClick={clickHandler}
         >
             <CloseMenu/>
         </div>
