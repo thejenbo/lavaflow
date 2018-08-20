@@ -1,11 +1,13 @@
 import React from 'react';
+import { history } from '../../routers/AppRouter';
 import { Link } from 'react-router-dom';
 import { css } from 'react-emotion';
 import moment from 'moment';
-import { COLOR_PRIMARY } from '../../lib/styles';
+import { COLOR_PRIMARY, COLOR_GREY } from '../../lib/styles';
 
 const notesList = css`
-    color: #ec008c;
+    background: ${COLOR_GREY};
+    color: ${COLOR_GREY};
     width: 100%;
     max-height: 100%;
     overflow-y: scroll;
@@ -22,6 +24,11 @@ const notesListItem = css`
     border-bottom: 1px solid ${COLOR_PRIMARY};
     justify-content: space-between;
     align-items: center;
+
+    &.active {
+        background: ${COLOR_GREY};
+        color: #fff;
+    }
 `;
 
 const noteContent = css`
@@ -30,21 +37,23 @@ const noteContent = css`
     }
 `;
 
-const NotesList = ({notes}) => {
+const NotesList = ({notes, current}) => {
     const truncateText = text => {
         if (text.length > 15) {
             let truncatedText = text.substring(0, 20);
             return `${truncatedText}...`;
         } else {
-            return `${text}...`
+            return `${text}`
         }
     }
+
     return (
         <div className={notesList}>
-            {notes.map((note) => (
+            {notes.map(note => (
                 <Link 
                     to={`/note/${note.id}`} 
-                    className={notesListItem} key={note.id}
+                    className={note.id === current ? `${notesListItem} active` : notesListItem}
+                    key={note.id}
                 >
                     <div className={noteContent}>
                         <h5 style={{marginBottom: '5px'}}>

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import {Link} from 'react-router-dom';
 import styled, { css } from 'react-emotion'
-import {Logo, OpenMenu, PlusSign} from '../Svgs';
+import {Logo, OpenMenu} from '../Svgs';
 import MainNav from '../MainNav';
 
 const StyledHeader = styled('header')`

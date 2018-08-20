@@ -25,7 +25,7 @@ const textArea = css`
 
 const deleteBtn = css`
     width: 18px;
-    height: 18px;
+    height: 22px;
     position: absolute;
     bottom: 15px;
     right: 15px;

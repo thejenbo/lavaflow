@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { css } from 'react-emotion';
+import AddNote from '../AddNote';
 import Toolbar from '../Toolbar';
 import Sidebar from '../Sidebar';
 import Editor from '../Editor';
@@ -16,18 +17,29 @@ const notesContainer = css`
 
 class Dashboard extends PureComponent {
 
+    getCurrentId() {
+        if (this.props.match.params.id) {
+            return this.props.match.params.id;
+        } else {
+            return this.props.notes[0].id;
+        }
+    }
+
     render() {
         return (
             <React.Fragment>
-                <Toolbar/>
                 {!this.props.notes.length && 
-                    <h3 style={{color: '#fff'}}>You haven't created any notes yet!</h3>
+                    <div style={{textAlign: 'center'}}>
+                        <h3 style={{color: '#fff'}}>You haven't created any notes yet!</h3>
+                        <AddNote>Create A Note</AddNote>
+                    </div>
                 }
                 {this.props.notes.length > 0 && 
                     <React.Fragment>
+                        <Toolbar/>
                         <div className={notesContainer}>
-                            <Sidebar notes={this.props.notes} />
-                            <Editor noteId={this.props.match.params.id ? this.props.match.params.id : this.props.notes[0].id} />
+                            <Sidebar notes={this.props.notes} current={this.getCurrentId()} />
+                            <Editor noteId={this.getCurrentId()} />
                         </div>
                     </React.Fragment>
                 }
