@@ -29,6 +29,7 @@ const dashboardLink = css`
 
 const Toolbar = props => (
     <div className={toolbarContainer}>
+        {console.log(props.pathname)}
         {props.pathname !== '/dashboard' && 
             <Link className={dashboardLink} to="/dashboard">
                 Back to Dashboard

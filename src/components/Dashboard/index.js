@@ -13,29 +13,10 @@ const notesContainer = css`
     display: flex;
     flex: 1;
     flex-direction: column;
+    margin-bottom: 15px;
 `;
 
 class Dashboard extends PureComponent {
-
-    state = {
-        currentId: this.getCurrentId()
-    }
-
-    getCurrentId() {
-        if (this.props.notes.length) {
-            if (this.props.match.params.id) {
-                return this.props.match.params.id;
-            } else {
-                return this.props.notes[0].id;
-            }
-        }
-    }
-
-    componentDidUpdate() {
-        this.setState({
-            currentId: this.getCurrentId()
-        })
-    }
 
     render() {
         return (
@@ -49,8 +30,8 @@ class Dashboard extends PureComponent {
                 {this.props.notes.length > 0 && 
                     <React.Fragment>
                         <div className={notesContainer}>
-                            <Toolbar location={this.props.location.pathname}/>
-                            <NotesList notes={this.props.notes} current={this.state.currentId} />
+                            <Toolbar pathname={this.props.location.pathname}/>
+                            <NotesList notes={this.props.notes} />
                         </div>
                     </React.Fragment>
                 }

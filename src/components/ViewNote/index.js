@@ -14,6 +14,7 @@ const container = css`
     display: flex;
     flex: 1;
     flex-direction: column;
+    margin-bottom: 15px;
 `;
 
 const notesContainer = css`
