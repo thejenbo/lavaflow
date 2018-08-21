@@ -12,7 +12,6 @@ This app is a WIP started on August 8th, 2018. Track my progress as I string tog
 3. `yarn start`
 
 ### To do
-- Fix delete note bug
 - Write tests
 - Improve UX
 - Add transitions/animations
