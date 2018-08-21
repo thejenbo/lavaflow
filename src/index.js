@@ -27,8 +27,6 @@ injectGlobal`
 		height: 100%;
 		position: fixed;
 		width: 100%;
-		display: flex;
-        flex-direction: column;
         background: #ec008c;
         background: linear-gradient(to bottom, #fc6767, #ec008c);
 	}

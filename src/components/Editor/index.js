@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import { connect } from 'react-redux';
 import { css } from 'react-emotion';
 import NoteForm from '../NoteForm';
 
@@ -19,10 +18,4 @@ class Editor extends PureComponent {
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        notes: state.notes
-    }
-}
-
-export default connect(mapStateToProps)(Editor);
+export default Editor;

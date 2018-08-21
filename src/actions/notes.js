@@ -48,7 +48,6 @@ export const deleteNote = ({id} = {}) => ({
 
 export const startDeleteNote = ({id} = {}) => {
     return (dispatch, getState) => {
-        console.log('deleting note from action ', id)
         const uid = getState().auth.uid;
         return database.ref(`users/${uid}/notes/${id}`).remove()
             .then(() => {

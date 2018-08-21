@@ -1,15 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { css } from 'react-emotion';
 import AddNote from '../AddNote';
+import { COLOR_PRIMARY } from '../../lib/styles';
 
 const toolbarContainer = css`
     background: #fff;
+    border-bottom: 1px solid ${COLOR_PRIMARY};
     padding: 10px 15px;
-    position: fixed;
-    bottom: 0;
-    left: 0;
     width: 100%;
     display: flex;
+    justify-content: space-between;
     align-items: center;
 `;
 
@@ -20,8 +21,19 @@ const addBtn = css`
     background: transparent;
 `;
 
-const Toolbar = () => (
+const dashboardLink = css`
+    color: ${COLOR_PRIMARY};
+    font-weight: bold;
+    text-decoration: none;
+`;
+
+const Toolbar = props => (
     <div className={toolbarContainer}>
+        {props.pathname !== '/dashboard' && 
+            <Link className={dashboardLink} to="/dashboard">
+                Back to Dashboard
+            </Link>
+        }
         <AddNote className={addBtn}/>
     </div>
 )

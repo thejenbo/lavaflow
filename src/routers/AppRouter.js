@@ -3,6 +3,7 @@ import { Router, Route, Switch } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 import Login from '../components/Login';
 import Dashboard from '../components/Dashboard';
+import ViewNote from '../components/ViewNote';
 import NotFound from '../components/NotFound';
 import PrivateRouter from './PrivateRouter';
 import PublicRouter from './PublicRouter';
@@ -24,7 +25,7 @@ const AppRouter = () => (
                 />
                 <PrivateRouter 
                     path="/note/:id"
-                    component={Dashboard}
+                    component={ViewNote}
                 />
                 <Route 
                     component={NotFound}

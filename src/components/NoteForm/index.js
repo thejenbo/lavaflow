@@ -5,10 +5,9 @@ import moment from 'moment';
 import { startDeleteNote, startEditNote } from '../../actions/notes';
 import { css } from 'react-emotion';
 import Button from '../Button';
-import AddNote from '../AddNote';
 import { Delete } from '../Svgs';
 
-const WAIT_INTERVAL = 1500;
+const WAIT_INTERVAL = 500;
 
 const noteForm = css`
     height: 100%;
@@ -22,6 +21,7 @@ const textArea = css`
     border-radius: 3px;
     padding: 15px;
     border: none;
+    resize: none;
 `
 
 const deleteBtn = css`
@@ -113,7 +113,6 @@ const mapDispatchToProps = dispatch => {
             }
         },
         onDeleteClick: id => {
-            console.log('ondeleteclick ', id);
             dispatch(startDeleteNote({id}));
             history.push('/');
         }

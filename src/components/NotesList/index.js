@@ -39,12 +39,18 @@ const noteContent = css`
 const NotesList = ({notes, current}) => {
     const truncateText = text => {
         if (text.length > 15) {
-            let truncatedText = text.substring(0, 20);
+            let truncatedText = text.substring(0, 15);
             return `${truncatedText}...`;
         } else {
             return `${text}`
         }
     }
+
+    const sortNotes = notes => {
+        return notes.sort((a, b) => {return a.createdAt < b.createdAt})
+    }
+
+    notes = sortNotes(notes);
 
     return (
         <div className={notesList}>
