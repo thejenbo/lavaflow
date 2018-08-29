@@ -19,18 +19,18 @@ test('should trigger deletion of note with action id', () => {
     });
 });
 
-// test('should trigger replacement of the text of note with action id with action text', () => {
-//     const updates = {text: 'hello there', createdAt: '12:01'};
-//     const action = editNote({id: '123', updates});
+test('should trigger replacement of the text of note with action id with action text', () => {
+    const updates = {text: 'hello there', createdAt: '12:01'};
+    const action = editNote('123', updates);
 
-//     expect(action).toEqual({
-//         type: 'EDIT_NOTE',
-//         id: '123',
-//         updates
-//     });
-// });
+    expect(action).toEqual({
+        id: '123',
+        type: 'EDIT_NOTE',
+        updates
+    });
+});
 
-test('should trigger return all notes', () => {
+test('should trigger return of all notes', () => {
     const notes = [
         {
             id: '123', 

@@ -51,7 +51,6 @@ const MainNav = ({ onClick, clickHandler }) => (
         </div>
         
         <Link to="/dashboard">dashboard</Link>
-        <Link to="/create">new note</Link>
         <Link to="/" onClick={onClick}>logout</Link>
     </Nav>
 );

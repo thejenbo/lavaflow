@@ -16,12 +16,12 @@ export const startCreateNote = (noteData = {}) => {
         const note = {text, createdAt};
 
         database.ref(`users/${uid}/notes`).push(note)
-        .then((ref) => {
-            dispatch(createNote({
-                id: ref.key,
-                ...note
-            }))
-        });
+            .then((ref) => {
+                dispatch(createNote({
+                    id: ref.key,
+                    ...note
+                }))
+            });
     }
 };
 

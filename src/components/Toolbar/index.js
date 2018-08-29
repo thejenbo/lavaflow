@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { css } from 'react-emotion';
 import AddNote from '../AddNote';
 import { COLOR_PRIMARY } from '../../lib/styles';
+import { LeftArrow } from '../Svgs';
 
 const toolbarContainer = css`
     background: #fff;
@@ -29,10 +30,14 @@ const dashboardLink = css`
 
 const Toolbar = props => (
     <div className={toolbarContainer}>
-        {console.log(props.pathname)}
         {props.pathname !== '/dashboard' && 
             <Link className={dashboardLink} to="/dashboard">
-                Back to Dashboard
+                <div style={{display: 'flex', alignItems: 'center'}}>
+                    <div style={{width: '13px', height: '25px', marginRight: '10px'}}>
+                        <LeftArrow />
+                    </div>
+                    All Notes
+                </div>
             </Link>
         }
         <AddNote className={addBtn}/>

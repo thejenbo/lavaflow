@@ -56,6 +56,21 @@ export const Delete = props => (
 	</svg>
 )
 
+export const LeftArrow = props => (
+	<svg viewBox="0 0 22.2 37.4" {...props}>
+		<defs>
+			<linearGradient id="linear" x1="0%" y1="0%" x2="100%" y2="0%">
+				<stop offset="0%"   stopColor="#fc6767" stopOpacity="1.0" />
+				<stop offset="100%" stopColor="#ec008c" stopOpacity="1.0" />
+			</linearGradient>
+		</defs>
+		<path
+			d="M3.5 13.8L16.2 1c1.4-1.4 3.6-1.4 4.9 0 1.4 1.4 1.4 3.6 0 5L8.4 18.7l12.7 12.7c1.4 1.4 1.4 3.6 0 5s-3.6 1.4-4.9 0L3.5 23.7 1 21.2c-1.4-1.4-1.4-3.6 0-5l2.5-2.4z"
+			fill="url(#linear)"
+		/>
+	</svg>
+)
+
 export const RightArrow = props => (
 	<svg viewBox="0 0 22.2 37.4" {...props}>
 		<defs>
