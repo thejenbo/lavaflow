@@ -16,3 +16,4 @@ This app is a WIP started on August 8th, 2018. Track my progress as I string tog
 - Improve accessibility
 - Improve UX
 - Add transitions/animations
+- Add note templates/themes
