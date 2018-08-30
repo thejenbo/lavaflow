@@ -41,7 +41,9 @@ const btnContainer = css`
 class NoteForm extends PureComponent {
     state = {
         text: '',
-        createdAt: ''
+        createdAt: '',
+        saved: false,
+        savedAt: ''
     }
 
     timer = null;
@@ -79,7 +81,8 @@ class NoteForm extends PureComponent {
                 key={this.id}
                 className={noteForm}
             >
-                <textarea 
+                <textarea
+                    aria-label="note"
                     className={textArea}
                     defaultValue={this.selectedNote ? this.selectedNote.text : ''}
                     placeholder="Look, it's a brand new note!"
