@@ -3,7 +3,7 @@ import {css} from 'react-emotion';
 import Header from '../Header';
 
 const layout = css`
-    max-width: 1440px;
+    max-width: 2000px;
     margin: auto;
     min-height: 100%;
     height: 100%;
